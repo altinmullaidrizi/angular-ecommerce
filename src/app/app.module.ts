@@ -11,6 +11,7 @@ import { AboutComponent } from './views/about/about.component';
 import { ContactComponent } from './views/contact/contact.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import {DataService} from './data.service';
 
 @NgModule({
   declarations: [
@@ -26,9 +27,11 @@ import { ProductCardComponent } from './components/product-card/product-card.com
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    DataService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
