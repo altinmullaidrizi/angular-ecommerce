@@ -12,6 +12,8 @@ import { ContactComponent } from './views/contact/contact.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import {DataService} from './data.service';
+import { ProductPageComponent } from './views/product-page/product-page.component';
+import { ShopComponent } from './views/shop/shop.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import {DataService} from './data.service';
     AboutComponent,
     ContactComponent,
     StatisticsComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ProductPageComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,

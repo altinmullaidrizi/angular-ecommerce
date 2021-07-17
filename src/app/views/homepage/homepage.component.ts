@@ -16,17 +16,14 @@ export class HomepageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dataService.getPosts();
-    this.data = this.dataService.products;
-    console.log('data', this.data);
     this.getProducts();
   }
 
   getProducts(): void {
-    fetch('https://fakestoreapi.com/products')
+    fetch('https://fakestoreapi.com/products?limit=8')
       .then(res => res.json())
       .then(json => {
-        this.products = json.slice(0, 8);
+        this.products = json;
       });
   }
 }
