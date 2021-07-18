@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {DataService} from '../../data.service';
+import {HttpService} from '../../services/http.service';
+import {Subscription} from 'rxjs';
+import {APIResponse, Product} from '../../models';
 
 @Component({
   selector: 'app-homepage',
@@ -7,12 +9,12 @@ import {DataService} from '../../data.service';
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-  public dataService: any;
-  public data: any;
-  public products: any;
+  // @ts-ignore
+  public products: APIResponse<Product>;
+  // @ts-ignore
+  private productSub: Subscription;
 
-  constructor(dataService: DataService) {
-    this.dataService = dataService;
+  constructor(private httpService: HttpService) {
   }
 
   ngOnInit(): void {
@@ -20,10 +22,10 @@ export class HomepageComponent implements OnInit {
   }
 
   getProducts(): void {
-    fetch('https://fakestoreapi.com/products?limit=8')
-      .then(res => res.json())
-      .then(json => {
-        this.products = json;
+    this.productSub = this.httpService
+      .getProducts('8')
+      .subscribe((productsList: APIResponse<Product>) => {
+        this.products = productsList;
       });
   }
 }

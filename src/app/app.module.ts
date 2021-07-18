@@ -11,9 +11,10 @@ import { AboutComponent } from './views/about/about.component';
 import { ContactComponent } from './views/contact/contact.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
-import {DataService} from './data.service';
+import {HttpService} from './services/http.service';
 import { ProductPageComponent } from './views/product-page/product-page.component';
 import { ShopComponent } from './views/shop/shop.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,9 +33,10 @@ import { ShopComponent } from './views/shop/shop.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
-    DataService,
+    HttpService,
   ],
   bootstrap: [AppComponent]
 })

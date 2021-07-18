@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {APIResponse, Product} from '../../models';
+import {HttpService} from '../../services/http.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-shop',
@@ -6,19 +9,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit {
-  public products: any;
+  // @ts-ignore
+  public products: APIResponse<Product>;
+  // @ts-ignore
+  private productSub: Subscription;
 
-  constructor() { }
+  constructor(private httpService: HttpService) { }
 
   ngOnInit(): void {
     this.getProducts();
   }
 
   getProducts(): void {
-    fetch('https://fakestoreapi.com/products')
-      .then(res => res.json())
-      .then(json => {
-        this.products = json;
+    this.productSub = this.httpService
+      .getProducts()
+      .subscribe((productsList: APIResponse<Product>) => {
+        this.products = productsList;
       });
   }
 }
