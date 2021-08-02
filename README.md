@@ -1,5 +1,9 @@
 # AngularEcommerce
 
+`master` branch is the main development branch, while `deploy` is the branch where the express server has been set up for deployment on Heroku.
+
+Every change that will be made first will be merged/updated in `master` and then `master` is merged to `deploy`.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.
 
 ## Development server
