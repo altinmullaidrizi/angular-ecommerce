@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import { environment as env } from 'src/environments/environment';
+import {environment as env} from 'src/environments/environment';
 import {APIResponse, Product} from '../models';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts(limit?: string, sort?: string): Observable<APIResponse<Product>>{
+  getProducts(limit?: string, sort?: string): Observable<APIResponse<Product>> {
     let params;
     if (limit) {
       params = new HttpParams().set('limit', limit);
@@ -23,5 +23,13 @@ export class HttpService {
     return this.http.get<APIResponse<Product>>(`${env.BASE_URL}/products`, {
       params,
     });
+  }
+
+  getAllCategories(): Observable<APIResponse<any>> {
+    return this.http.get<APIResponse<any>>(`${env.BASE_URL}/products/categories`);
+  }
+
+  getCategoryProducts(category: string): Observable<APIResponse<Product>> {
+    return this.http.get<APIResponse<Product>>(`${env.BASE_URL}/products/categories/` + category);
   }
 }
