@@ -15,6 +15,7 @@ import {HttpService} from './services/http.service';
 import { ProductPageComponent } from './views/product-page/product-page.component';
 import { ShopComponent } from './views/shop/shop.component';
 import { HttpClientModule } from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     HttpService,

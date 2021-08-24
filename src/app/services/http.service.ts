@@ -25,11 +25,11 @@ export class HttpService {
     });
   }
 
-  getAllCategories(): Observable<APIResponse<any>> {
-    return this.http.get<APIResponse<any>>(`${env.BASE_URL}/products/categories`);
+  getAllCategories(): Observable<any> {
+    return this.http.get<any>(`${env.BASE_URL}/products/categories`);
   }
 
   getCategoryProducts(category: string): Observable<APIResponse<Product>> {
-    return this.http.get<APIResponse<Product>>(`${env.BASE_URL}/products/categories/` + category);
+    return this.http.get<APIResponse<Product>>(`${env.BASE_URL}/products/category/` + category);
   }
 }

@@ -12,7 +12,7 @@ export class ShopComponent implements OnInit {
   // @ts-ignore
   public products: APIResponse<Product>;
   // @ts-ignore
-  public categories: APIResponse<any>;
+  public categories: any;
   // @ts-ignore
   private productSub: Subscription;
 // @ts-ignore
@@ -43,11 +43,22 @@ export class ShopComponent implements OnInit {
   }
 
   getCategories(): void {
-    this.categorySub = this.httpService
-      .getAllCategories()
-      .subscribe((categoryList: APIResponse<any>) => {
-        // this.categories = categoryList;
-        console.log('categories', categoryList.results, typeof categoryList);
-      });
+    this.httpService.getAllCategories()
+      .subscribe(
+        (response) => {
+          console.log(response, typeof response);
+          this.categories = response;
+        },
+        (error) => {
+          console.error('Request failed with error: ', error);
+        },
+        () => {
+          console.log('Request completed');
+        }
+      );
+  }
+
+  onCategoryChange(category: any): void {
+    this.getProducts(category.target.value);
   }
 }
